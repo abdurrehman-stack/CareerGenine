@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerGenie · Your Career Mentor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- ===== HOME SCREEN ===== -->
+    <div id="homeScreen" class="screen active">
+        <div class="home-wrapper">
+            <div class="home-hero">
+                <div class="hero-content">
+                    <div class="badge">✨ no sign-up · free · personalized</div>
+                    <h1>Your career<br><span>starts here.</span></h1>
+                    <p>Not generic advice. A real mentor who gets you.<br>Answer 10 questions — or upload your data — and get a plan that actually fits.</p>
+                    <div class="hero-actions">
+                        <button class="btn-primary" onclick="startOnboarding()">Start your assessment →</button>
+                        <button class="btn-secondary" onclick="triggerUpload()">📁 Upload your data</button>
+                    </div>
+                    <input type="file" id="uploadInput" accept=".txt" style="display:none;" onchange="handleFileUpload(event)">
+                    <div id="uploadStatus" class="upload-status" style="display:none;"></div>
+                    <span class="hero-note">takes 5 minutes · or instant upload</span>
+                </div>
+                <div class="hero-visual">
+                    <div class="visual-block"></div>
+                    <div class="visual-block"></div>
+                    <div class="visual-block"></div>
+                </div>
+            </div>
+            
+            <div class="home-features">
+                <div class="feature-item">
+                    <span class="feature-number">01</span>
+                    <h3>Real conversation</h3>
+                    <p>Not a chatbot. A mentor who remembers what you told them and gives advice that actually matters.</p>
+                </div>
+                <div class="feature-item feature-item-large">
+                    <span class="feature-number">02</span>
+                    <h3>Content that fits</h3>
+                    <p>5 fully personalized YouTube picks — 2 technical, 2 soft skills, 1 built just for you.</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-number">03</span>
+                    <h3>Your report</h3>
+                    <p>Download a full PDF with your analysis, plan, and next steps. Share it, print it, own it.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== ONBOARDING SCREEN ===== -->
+    <div id="onboardingScreen" class="screen">
+        <div class="onboarding-wrapper">
+            <div class="onboarding-header">
+                <span class="onboarding-step" id="stepDisplay">1 / 10</span>
+                <div class="onboarding-progress">
+                    <div class="progress-track">
+                        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="onboarding-content">
+                <p class="onboarding-label">Question <span id="questionNum">1</span></p>
+                <h2 id="questionText">Loading...</h2>
+                <div class="answer-area">
+                    <textarea id="answerInput" rows="4" placeholder="Write your answer here..."></textarea>
+                </div>
+                <div class="onboarding-actions">
+                    <button class="btn-secondary" id="prevBtn" style="display:none;" onclick="prevQuestion()">← back</button>
+                    <button class="btn-primary" id="nextBtn" onclick="nextQuestion()">next →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== DASHBOARD SCREEN ===== -->
+    <div id="dashboardScreen" class="screen">
+        <div class="dashboard-wrapper">
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <span class="header-greeting">👋 Welcome,</span>
+                    <span class="header-name" id="userNameDisplay">User</span>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-download" onclick="downloadUserData()" title="Download your generated profile data">
+                        📥 Download Your Data
+                    </button>
+                    <button class="btn-text" onclick="logout()">Leave</button>
+                </div>
+            </header>
+            
+            <nav class="dashboard-nav">
+                <button class="nav-item active" data-tab="chat" onclick="switchTab('chat')">
+                    <span class="nav-icon">💭</span>
+                    <span>Mentor</span>
+                </button>
+                <button class="nav-item" data-tab="youtube" onclick="switchTab('youtube')">
+                    <span class="nav-icon">▶</span>
+                    <span>Videos</span>
+                </button>
+                <button class="nav-item" data-tab="analysis" onclick="switchTab('analysis')">
+                    <span class="nav-icon">📊</span>
+                    <span>Insights</span>
+                </button>
+                <button class="nav-item" data-tab="plan" onclick="switchTab('plan')">
+                    <span class="nav-icon">🗺</span>
+                    <span>Plan</span>
+                </button>
+                <button class="nav-item" data-tab="ability" onclick="switchTab('ability')">
+                    <span class="nav-icon">🧪</span>
+                    <span>Ability Test</span>
+                </button>
+                <button class="nav-item" data-tab="report" onclick="switchTab('report')">
+                    <span class="nav-icon">📄</span>
+                    <span>Report</span>
+                </button>
+                <button class="nav-item" data-tab="community" onclick="switchTab('community')">
+                    <span class="nav-icon">🌍</span>
+                    <span>Share</span>
+                </button>
+                <button class="nav-item" data-tab="linkedin" onclick="switchTab('linkedin')">
+                    <span class="nav-icon">in</span>
+                    <span>LinkedIn</span>
+                </button>
+                <button class="nav-item" data-tab="resume" onclick="switchTab('resume')">
+                    <span class="nav-icon">📝</span>
+                    <span>Resume</span>
+                </button>
+            </nav>
+            
+            <div class="dashboard-content">
+                <!-- TAB: Chat -->
+                <div id="tabChat" class="tab-panel active">
+                    <div class="chat-container">
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="message message-bot">
+                                <div class="message-avatar">🧠</div>
+                                <div class="message-content">
+                                    <p>Hey, I've looked over your profile. What's on your mind today?</p>
+                                    <span class="message-time">just now</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-input-area">
+                            <input type="text" id="chatInput" placeholder="Ask me anything..." onkeypress="if(event.key==='Enter') sendMessage()">
+                            <button class="btn-send" onclick="sendMessage()">→</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- TAB: YouTube -->
+                <div id="tabYoutube" class="tab-panel">
+                    <div class="panel-header">
+                        <h2>Videos for you</h2>
+                        <p>5 fully personalized picks — 2 technical · 2 soft skills · 1 made for you</p>
+                    </div>
+                    <div class="panel-actions">
+                        <button class="btn-primary" onclick="loadYoutube()">Find my 5 videos →</button>
+                    </div>
+                    <div class="youtube-grid" id="youtubeGrid"></div>
+                </div>
+                
+                <!-- TAB: Analysis -->
+                <div id="tabAnalysis" class="tab-panel">
+                    <div class="panel-header">
+                        <h2>Your strengths &amp; edges</h2>
+                        <p>An honest look at where you shine and where you can grow</p>
+                    </div>
+                    <div class="panel-actions">
+                        <button class="btn-primary" onclick="loadAnalysis()">Run analysis →</button>
+                    </div>
+                    <div class="analysis-grid" id="analysisGrid"></div>
+                </div>
+                
+                <!-- TAB: Plan -->
+                <div id="tabPlan" class="tab-panel">
+                    <div class="panel-header">
+                        <h2>Your 6-month map</h2>
+                        <p>A step-by-step plan built for you</p>
+                    </div>
+                    <div class="panel-actions">
+                        <button class="btn-primary" onclick="loadPlan()">Generate plan →</button>
+                    </div>
+                    <div class="plan-content" id="planContent"></div>
+                </div>
+
+                <!-- TAB: Ability Test -->
+                <div id="tabAbility" class="tab-panel">
+                    <div class="panel-header">
+                        <h2>Your Ability Test</h2>
+                        <p>15 personalized questions based on your profile — see where you actually stand</p>
+                    </div>
+                    <div class="panel-actions" id="abilityStartAction">
+                        <button class="btn-primary" onclick="loadAbilityTest()">Start my ability test →</button>
+                    </div>
+                    <div class="ability-test-area" id="abilityTestArea"></div>
+                </div>
+                
+                <!-- TAB: Report -->
+                <div id="tabReport" class="tab-panel">
+                    <div class="panel-header">
+                        <h2>Your full report</h2>
+                        <p>Download everything in one PDF document</p>
+                    </div>
+                    <div class="panel-actions">
+                        <button class="btn-primary" onclick="loadReport()">Generate report →</button>
+                        <button class="btn-secondary" id="downloadReportBtn" style="display:none; margin-left:12px;" onclick="downloadReportPDF()">⬇ Download as PDF</button>
+                    </div>
+                    <div class="report-content" id="reportContent"></div>
+                </div>
+
+                <!-- TAB: Community Share -->
+                <div id="tabCommunity" class="tab-panel">
+                    <div class="panel-header">
+                        <h2>Share your roadmap</h2>
+                        <p>Generate a shareable message you can send on WhatsApp, Email, or LinkedIn</p>
+                    </div>
+                    <div class="panel-actions">
+                        <button class="btn-primary" onclick="shareRoadmap()">Share my roadmap →</button>
+                    </div>
+                    <div class="share-result" id="shareResult"></div>
+                    <div class="my-shares-section" id="mySharesSection"></div>
+                </div>
+
+                <!-- TAB: LinkedIn Import -->
+                <div id="tabLinkedin" class="tab-panel">
+                    <div class="panel-header">
+                        <h2>Import from LinkedIn</h2>
+                        <p>Paste your LinkedIn URL or upload your LinkedIn PDF export to enrich your profile</p>
+                    </div>
+
+                    <div class="linkedin-import-box">
+                        <div class="import-option">
+                            <h3>Option 1 — Paste LinkedIn URL</h3>
+                            <p class="hint">Note: LinkedIn blocks scraping. Best results come from the PDF option below.</p>
+                            <input type="url" id="linkedinUrlInput" placeholder="https://www.linkedin.com/in/your-profile" class="linkedin-input">
+                            <button class="btn-secondary" onclick="importLinkedInUrl()">Import from URL →</button>
+                        </div>
+
+                        <div class="import-divider">or</div>
+
+                        <div class="import-option">
+                            <h3>Option 2 — Upload LinkedIn PDF (recommended)</h3>
+                            <p class="hint">On LinkedIn: open your profile → "More" → "Save to PDF" → upload here.</p>
+                            <input type="file" id="linkedinPdfInput" accept=".pdf" style="display:none;" onchange="handleLinkedInPdf(event)">
+                            <button class="btn-primary" onclick="document.getElementById('linkedinPdfInput').click()">📄 Upload LinkedIn PDF</button>
+                        </div>
+
+                        <div id="linkedinStatus" class="import-status" style="display:none;"></div>
+                    </div>
+
+                    <div id="linkedinPreview" class="linkedin-preview"></div>
+                </div>
+
+                               <!-- TAB: Resume Builder -->
+                <div id="tabResume" class="tab-panel">
+                    <div class="panel-header">
+                        <h2>Professional Resume Builder</h2>
+                        <p>Fill a few details and get a clean, ATS-friendly PDF resume</p>
+                    </div>
+
+                    <div class="resume-form-wrapper">
+                        <div class="form-intro">
+                            <h3>📝 Quick details for your resume</h3>
+                            <p>These fields help us build a complete resume. Anything you leave blank will be filled by AI from your profile.</p>
+                        </div>
+
+                        <div class="resume-form-grid">
+                            <div class="form-field">
+                                <label for="rf_email">Email <span class="req">*</span></label>
+                                <input type="email" id="rf_email" placeholder="you@example.com">
+                            </div>
+                            <div class="form-field">
+                                <label for="rf_phone">Phone <span class="req">*</span></label>
+                                <input type="tel" id="rf_phone" placeholder="+92 300 0000000">
+                            </div>
+                            <div class="form-field">
+                                <label for="rf_location">Location</label>
+                                <input type="text" id="rf_location" placeholder="Karachi, Pakistan">
+                            </div>
+                            <div class="form-field">
+                                <label for="rf_linkedin">LinkedIn URL</label>
+                                <input type="url" id="rf_linkedin" placeholder="https://linkedin.com/in/...">
+                            </div>
+                            <div class="form-field">
+                                <label for="rf_github">GitHub URL</label>
+                                <input type="url" id="rf_github" placeholder="https://github.com/...">
+                            </div>
+                            <div class="form-field">
+                                <label for="rf_portfolio">Portfolio / Website</label>
+                                <input type="url" id="rf_portfolio" placeholder="https://yoursite.com">
+                            </div>
+                            <div class="form-field">
+                                <label for="rf_years">Years of Experience</label>
+                                <input type="text" id="rf_years" placeholder="e.g. 2 years / Fresher">
+                            </div>
+                            <div class="form-field">
+                                <label for="rf_target_role">Target Role <span class="req">*</span></label>
+                                <input type="text" id="rf_target_role" placeholder="e.g. Full-Stack Developer">
+                            </div>
+                        </div>
+
+                        <div class="form-field form-field-wide">
+                            <label for="rf_skills">Key Skills (comma separated)</label>
+                            <input type="text" id="rf_skills" placeholder="Python, React, SQL, Communication...">
+                        </div>
+
+                        <div class="form-field form-field-wide">
+                            <label for="rf_tools">Tools / Technologies (comma separated)</label>
+                            <input type="text" id="rf_tools" placeholder="Git, Docker, VS Code, Figma...">
+                        </div>
+
+                        <div class="form-field form-field-wide">
+                            <label for="rf_experience">Experience (if any)</label>
+                            <textarea id="rf_experience" rows="3" placeholder="e.g. Software Intern at XYZ (Jun 2023 – Dec 2023): Built REST APIs with Flask serving 5k+ requests/day..."></textarea>
+                        </div>
+
+                        <div class="form-field form-field-wide">
+                            <label for="rf_projects">Projects (if any)</label>
+                            <textarea id="rf_projects" rows="3" placeholder="e.g. CareerGenie — AI Career Mentor (Python, Flask, Gemini API): Built full-stack web app used by 50+ users..."></textarea>
+                        </div>
+
+                        <div class="form-field form-field-wide">
+                            <label for="rf_education">Education</label>
+                            <input type="text" id="rf_education" placeholder="e.g. BS Computer Science, University of Karachi (2020 – 2024)">
+                        </div>
+
+                        <div class="form-field form-field-wide">
+                            <label for="rf_certifications">Certifications (comma separated)</label>
+                            <input type="text" id="rf_certifications" placeholder="e.g. Google Data Analytics, AWS Cloud Practitioner">
+                        </div>
+
+                        <div class="form-field form-field-wide">
+                            <label for="rf_achievements">Achievements (comma separated)</label>
+                            <input type="text" id="rf_achievements" placeholder="e.g. Won Hackathon 2024, Top 5% LeetCode">
+                        </div>
+
+                        <div class="form-note">
+                            💡 <b>Tip:</b> Leave any field blank — AI will fill it using your profile data. Required fields (marked *) are needed for a complete resume.
+                        </div>
+
+                        <div class="panel-actions" style="margin-top: 20px;">
+                            <button class="btn-primary" id="generateResumeBtn" onclick="generateResumePDF()">Generate my resume →</button>
+                            <button class="btn-secondary" onclick="prefillResumeForm()" style="margin-left: 12px;">🔄 Auto-fill from profile</button>
+                        </div>
+                    </div>
+
+                    <div id="resumeStatus" class="resume-status" style="display:none;"></div>
+
+                    <div class="resume-info-box">
+                        <h3>📄 What you'll get</h3>
+                        <ul>
+                            <li>Clean, professional, ATS-friendly layout (black &amp; white)</li>
+                            <li>AI-generated professional summary tailored to your target role</li>
+                            <li>Skills split into Technical / Tools / Soft Skills</li>
+                            <li>Experience, Projects, Education, Certifications, Achievements</li>
+                            <li>Combined from your onboarding data, LinkedIn, and the form above</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

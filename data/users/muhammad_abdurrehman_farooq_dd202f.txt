@@ -1,0 +1,45 @@
+============================================================
+CAREERGENIE USER PROFILE
+============================================================
+
+User ID: dd202f
+Name: Muhammad AbdurRehman Farooq
+Generated: September 03, 2026 at 05:59 PM
+
+------------------------------------------------------------
+ASSESSMENT RESPONSES
+------------------------------------------------------------
+
+1. What's your full name?
+   → Muhammad AbdurRehman Farooq
+
+2. What do you currently do? (Job/Student/Other)
+   → Student, Working Part time as a Video Editor and Social Media Manager
+
+3. How many years of experience do you have?
+   → 1 Year
+
+4. What are your top 3 skills? (comma separated)
+   → Python, Scikit-learn, PyTorch, Leadership
+
+5. What do you enjoy doing the most?
+   → Building machine learning models and understanding advanced AI algorithms
+
+6. Where do you see yourself in 5 years?
+   → Launching an AI startup and leading product development
+
+7. What's the biggest challenge in your career?
+   → Balancing hands-on AI project building with core academic studies
+
+8. What kind of learning works best for you?
+   → Hands-on project building and structured visual roadmaps
+
+9. Which industry excites you the most?
+   → Artificial Intelligence and Software-as-a-Service (SaaS)
+
+10. Is there anything else you'd like to share?
+   → Looking for clear guidance on full-stack AI app development and deployment
+
+------------------------------------------------------------
+END OF PROFILE
+------------------------------------------------------------

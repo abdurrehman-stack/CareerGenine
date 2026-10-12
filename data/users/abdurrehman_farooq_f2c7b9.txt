@@ -1,0 +1,85 @@
+============================================================
+CAREERGENIE USER PROFILE (UPLOADED)
+============================================================
+
+User ID: f2c7b9
+Source: Uploaded file
+Generated: October 12, 2026 at 08:24 AM
+
+------------------------------------------------------------
+STRUCTURED PROFILE
+------------------------------------------------------------
+
+USER NAME: abdurrehman farooq
+
+CORE PROFILE:
+- Current Role/Status: job
+- Experience Level: 1 year
+- Top Skills: AI/ML, Video editing, CIT
+- Interests: trying new things
+- 5-Year Goal: in NYC with my 10M dollor worth startup
+- Biggest Challenge: discipline and consistency
+- Learning Style: hands on practical learning
+- Target Industry: Tech, IT, AI
+- Additional Notes: not at all
+
+DETAILED BACKGROUND:
+Abdurrehman Farooq is currently in a job role, bringing 1 year of professional experience to the table. His primary skills revolve around AI/ML, video editing, and CIT, indicating a blend of technical and creative aptitudes. He describes himself as someone who enjoys "trying new things," suggesting a curious and adaptable personality, eager to explore new domains and experiences.
+
+Looking ahead, Abdurrehman has a clear and ambitious 5-year vision: he aims to be in New York City, at the helm of a startup valued at an impressive $10 million. This reveals a strong entrepreneurial drive and a high level of aspiration. The industries that particularly captivate him and where he sees his future unfolding are Tech, IT, and AI, which align well with his stated skills.
+
+Despite his clear goals and enthusiasm, Abdurrehman identifies "discipline and consistency" as the biggest challenges in his career. To overcome these hurdles and foster his growth, he finds that "hands-on practical learning" works best for him, preferring an experiential approach to acquiring new knowledge and skills.
+
+------------------------------------------------------------
+ORIGINAL UPLOADED CONTENT
+------------------------------------------------------------
+
+============================================================
+CAREERGENIE USER PROFILE
+============================================================
+
+User ID: 7ed7c5
+Name: abdurrehman farooq
+Generated: October 01, 2026 at 07:06 PM
+
+------------------------------------------------------------
+ASSESSMENT RESPONSES
+------------------------------------------------------------
+
+1. What's your full name?
+   → abdurrehman farooq
+
+2. What do you currently do? (Job/Student/Other)
+   → job
+
+3. How many years of experience do you have?
+   → 1
+
+4. What are your top 3 skills? (comma separated)
+   → AI/ML, Video editing, CIT
+
+5. What do you enjoy doing the most?
+   → trying new things
+
+6. Where do you see yourself in 5 years?
+   → in NYC with my 10M dollor worth startup
+
+7. What's the biggest challenge in your career?
+   → discplane and consistency
+
+8. What kind of learning works best for you?
+   → hands on practical learning
+
+9. Which industry excites you the most?
+   → Tech, IT, AI
+
+10. Is there anything else you'd like to share?
+   → not at all
+
+------------------------------------------------------------
+END OF PROFILE
+------------------------------------------------------------
+
+------------------------------------------------------------
+END OF PROFILE
+------------------------------------------------------------
